@@ -138,6 +138,11 @@ class Palette(PaletteWindow):
         self.connect('hide', self.__hide_cb)
         self.connect('notify::invoker', self.__notify_invoker_cb)
         self.connect('destroy', self.__destroy_cb)
+        self.connect('map', self.__map_cb)
+
+    def __map_cb(self, *args):
+        # Fixes #4463
+        self.present()
 
     def _invoker_right_click_cb(self, invoker):
         self.popup(immediate=True, state=self.SECONDARY)
